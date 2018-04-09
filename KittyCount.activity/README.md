@@ -12,6 +12,6 @@
 
 3. Create symlink to development activity using
 	
-	python setup.py dev
+	* python setup.py dev
 
 If Activity does not show up, restart Sugar
