@@ -1,2 +1,0 @@
-cd HelloWorldActivity.activity
-find . -type f | sed 's,^./,,g' > MANIFEST

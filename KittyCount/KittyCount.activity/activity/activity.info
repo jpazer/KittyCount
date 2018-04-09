@@ -1,8 +1,0 @@
-[Activity]
-name = KittyCount
-bundle_id = org.laptop.KittyCount
-icon = 
-exec = sugar-activity activity.KittyCount
-show_launcher = yes
-activity_version = 1
-license = GPLv3
