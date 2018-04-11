@@ -43,12 +43,12 @@ def main():
     def add():
         return 0
 
-    button_add = Button(screen, (w/2 + 100, h-220), (70, 70), add(), "+", 80)
+    button_add = Button(screen, (w/2 + 100, h-220), (70, 70), "+", 80, add())
 
     def sub():
         return 0
 
-    button_sub = Button(screen, (w / 2 - 250, h - 220), (70, 70), sub(), "-", 80)
+    button_sub = Button(screen, (w / 2 - 250, h - 220), (70, 70), "-", 80, sub())
 
 
     # exit logic
