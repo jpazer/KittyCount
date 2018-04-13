@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3cda956-79b6-4ab4-b8cf-30c9d74188e5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/KittyCount.activity/Button.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KittyCount.activity/NumberCircle.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KittyCount.activity/UserInput.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KittyCount.activity/Utilities.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KittyCount.activity/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KittyCount.activity/libraries/pygame_textinput/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KittyCount.activity/libraries/pygame_textinput/pygame_textinput.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KittyCount.activity/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/KittyCount.activity/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/KittyCount.activity/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="60" column="34" lean-forward="true" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+            <state relative-caret-position="254">
+              <caret line="48" column="16" lean-forward="true" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -35,8 +28,8 @@
       <file leaf-file-name="UserInput.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KittyCount.activity/UserInput.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+            <state relative-caret-position="273">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -47,8 +40,8 @@
       <file leaf-file-name="Button.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KittyCount.activity/Button.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="57" column="43" lean-forward="true" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
+            <state relative-caret-position="825">
+              <caret line="57" column="43" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -59,8 +52,8 @@
       <file leaf-file-name="NumberCircle.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KittyCount.activity/NumberCircle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="285">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -68,11 +61,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Utilities.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Utilities.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KittyCount.activity/Utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="52" lean-forward="true" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
+            <state relative-caret-position="285">
+              <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sysfont.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/pygame/sysfont.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="242" selection-start-line="242" selection-end-line="242" />
             </state>
           </provider>
         </entry>
@@ -94,11 +96,11 @@
       <list>
         <option value="$PROJECT_DIR$/KittyCount.activity/utilities.py" />
         <option value="$PROJECT_DIR$/KittyCount.activity/__init__.py" />
-        <option value="$PROJECT_DIR$/KittyCount.activity/main.py" />
         <option value="$PROJECT_DIR$/KittyCount.activity/Button.py" />
         <option value="$PROJECT_DIR$/KittyCount.activity/NumberCircle.py" />
         <option value="$PROJECT_DIR$/KittyCount.activity/UserInput.py" />
         <option value="$PROJECT_DIR$/KittyCount.activity/Utilities.py" />
+        <option value="$PROJECT_DIR$/KittyCount.activity/main.py" />
       </list>
     </option>
   </component>
@@ -366,16 +368,6 @@
         <state relative-caret-position="-16" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KittyCount.activity/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="60" column="34" lean-forward="true" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KittyCount.activity/libraries/pygame_textinput/pygame_textinput.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-455">
@@ -383,40 +375,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KittyCount.activity/Button.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="57" column="43" lean-forward="true" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KittyCount.activity/NumberCircle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KittyCount.activity/UserInput.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+        <state relative-caret-position="273">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/pygame/sysfont.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="242" selection-start-line="242" selection-end-line="242" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/KittyCount.activity/Utilities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="52" lean-forward="true" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
+        <state relative-caret-position="285">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KittyCount.activity/NumberCircle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KittyCount.activity/Button.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="57" column="43" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KittyCount.activity/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="48" column="16" lean-forward="true" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
