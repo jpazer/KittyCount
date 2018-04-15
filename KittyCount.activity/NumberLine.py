@@ -2,6 +2,7 @@ import pygame
 from NumberCircle import NumberCircle
 
 
+
 class NumberLine:
     num_of_points = 20  # num of points on number line
 
