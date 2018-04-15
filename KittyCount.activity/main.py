@@ -3,7 +3,7 @@ from Utilities import Utilities
 from UI import UI
 from NumberLine import NumberLine
 from character import character
-
+import time
 
 def main():
     pygame.init()
@@ -25,25 +25,19 @@ def main():
     #display Number Line
     number_line = NumberLine(screen, w, h)
     number_line.display()
-    
     #display cat
     cat_x, cat_y = number_line.circle_pos[7]
     cat = character(cat_x, cat_y, "../Assets/cat1.png", 100, 100, screen)
-    cat.display()
+
             
     #display mouse
     mouse_x, mouse_y = number_line.circle_pos[3]
     mouse = character (mouse_x, mouse_y, "../Assets/mouse3.png", 50, 50, screen)
-    mouse.display()
 
+    clock = pygame.time.Clock()
     # exit logic
     while not done:
-        clock = pygame.time.Clock()
         events = pygame.event.get()
-        
-        # draw UI
-        ui.display(events)
-
         for event in events:
             if event.type == pygame.QUIT:
                 done = True
@@ -51,6 +45,13 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     done = True
 
+        
+        # draw UI
+        screen.fill((255, 255, 255))
+        ui.display(events)
+        number_line.display()
+        mouse.display()
+        
 
         pygame.display.update()
         clock.tick(30)

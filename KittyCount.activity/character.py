@@ -15,7 +15,7 @@ class character:
         self.imageHeight = _imageHeight
         self.imageWidth = _imageWidth
         self.screen = screen
-
+        self.img = pygame.image.load(self.displayImage)
     def getxPos():
         return self.xPos
 
@@ -35,9 +35,11 @@ class character:
         self.imageWidth = _imageWidth
 
     def display(self):
-        img = pygame.image.load(self.displayImage)
         y = (self.yPos - self.imageHeight - 20)
         x = (self.xPos - (self.imageWidth / 2))
-        self.screen.blit(pygame.transform.scale(img,(self.imageHeight,self.imageWidth)),(x,y))
+        self.screen.blit(pygame.transform.scale(self.img,(self.imageHeight,self.imageWidth)),(x,y))
+    def move(self, x):
+        self.xPos += 20
         
+
 
