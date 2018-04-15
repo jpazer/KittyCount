@@ -1,5 +1,5 @@
 import pygame
-from Utilities import Utilities
+from game.Utilities import Utilities
 from libraries.pygame_textinput.pygame_textinput import TextInput
 
 

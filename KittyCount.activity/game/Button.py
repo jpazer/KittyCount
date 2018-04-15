@@ -1,5 +1,5 @@
 import pygame
-from Utilities import Utilities
+from game.Utilities import Utilities
 
 
 class Button:
@@ -35,13 +35,8 @@ class Button:
 
     def display(self, events):
         # if the button is clicked toggle the color
-        if self.check_button_pressed(events):
-            if self.user_input != False:
-                self.action(self.screen, self.user_input)
-            if self.color == (200, 200, 200):
-                self.color = (255, 255, 255)
-            else:
-                self.color = (200, 200, 200)
+        self.check_button_pressed(events)
+
 
         # background of button
         pygame.draw.rect(self.screen, self.color,
@@ -62,5 +57,10 @@ class Button:
         for event in events:
             # handle mouse click
             if event.type == pygame.MOUSEBUTTONUP:
-                return self.check_hover()
+                self.color = (255, 255, 255)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if self.check_hover():
+                    self.color = (200, 200, 200)
+                    if self.user_input != False:
+                        self.action(self.screen, self.user_input)
         return False
