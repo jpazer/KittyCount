@@ -16,6 +16,9 @@ class UserInput:
         self.screen = screen
         self.text_input = TextInput(font_size=self.font_size)
         self.position = position
+        # set starting value
+        self.text_input.input_string = "0"
+        self.text_input.cursor_position = 1
 
     def display(self, events):
         # background of text box (refreshes)
