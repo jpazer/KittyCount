@@ -57,3 +57,7 @@ class UserInput:
             return int(string)
         else:
             Utilities.show_error(self.screen, "The input must be a number")
+
+    def add(self, num):
+        self.text_input.input_string = str(int(self.text_input.input_string) + num)
+        self.text_input.cursor_position = len(self.text_input.input_string)
