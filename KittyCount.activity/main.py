@@ -30,7 +30,7 @@ def main():
     while not done:
         clock = pygame.time.Clock()
         events = pygame.event.get()
-
+        
         # draw UI
         ui.display(events)
 

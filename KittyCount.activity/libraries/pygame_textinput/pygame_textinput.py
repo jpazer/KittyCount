@@ -34,6 +34,7 @@ class TextInput:
         """
 
         # Text related vars:
+        self.valid_inputs = [pygame.K_0, pygame.K_1,pygame.K_2, pygame.K_3,pygame.K_4, pygame.K_5,pygame.K_6, pygame.K_7,pygame.K_8, pygame.K_9]
         self.antialias = antialias
         self.text_color = text_color
         self.font_size = font_size
@@ -98,10 +99,11 @@ class TextInput:
 
                 else:
                     # If no special key is pressed, add unicode of key to input_string
-                    self.input_string = self.input_string[:self.cursor_position] + \
-                                        event.unicode + \
-                                        self.input_string[self.cursor_position:]
-                    self.cursor_position += len(event.unicode) # Some are empty, e.g. K_UP
+                    if event.key in self.valid_inputs and (len(self.input_string) < 3):
+                        self.input_string = self.input_string[:self.cursor_position] + \
+                                            event.unicode + \
+                                            self.input_string[self.cursor_position:]
+                        self.cursor_position += len(event.unicode) # Some are empty, e.g. K_UP
 
             elif event.type == pl.KEYUP:
                 # *** Because KEYUP doesn't include event.unicode, this dict is stored in such a weird way
