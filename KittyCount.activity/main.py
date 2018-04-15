@@ -2,6 +2,7 @@ import pygame
 from Utilities import Utilities
 from UI import UI
 from NumberLine import NumberLine
+from character import character
 
 
 def main():
@@ -24,6 +25,14 @@ def main():
     #display Number Line
     number_line = NumberLine(screen, w, h)
     number_line.display()
+    
+    #display cat
+    cat = character(200,200,"../Assets/cat1.png",100,100,screen)
+    cat.display()
+            
+    #display mouse
+    mouse = character (500,200,"../Assets/mouse1.png",100,100,screen)
+    mouse.display()
 
     # exit logic
     while not done:
