@@ -4,6 +4,7 @@ from UI import UI
 from NumberLine import NumberLine
 from character import character
 
+
 def main():
     pygame.init()
     pygame.font.init()

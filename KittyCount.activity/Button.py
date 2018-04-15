@@ -5,13 +5,14 @@ from Utilities import Utilities
 class Button:
     color = (255, 255, 255)
 
-    def __init__(self, screen, position, size, text, text_size, action):
+    def __init__(self, screen, position, size, text, text_size, action, user_input=False):
         self.screen = screen
         self.position = position  # x, y of button and text
         self.size = size  # w, h of button
         self.text = text  # string
         self.text_size = text_size  # pt size of text
         self.action = action  # this function can be called once the button is clicked (not implemented)
+        self.user_input = user_input
 
         # make the text surface
         self.text_surface = Utilities.make_text_surface(self.text, self.text_size)
@@ -35,6 +36,8 @@ class Button:
     def display(self, events):
         # if the button is clicked toggle the color
         if self.check_button_pressed(events):
+            if self.user_input != False:
+                self.action(self.screen, self.user_input)
             if self.color == (200, 200, 200):
                 self.color = (255, 255, 255)
             else:

@@ -16,6 +16,9 @@ class UserInput:
         self.screen = screen
         self.text_input = TextInput(font_size=self.font_size)
         self.position = position
+        # set starting value
+        self.text_input.input_string = "0"
+        self.text_input.cursor_position = 1
 
     def display(self, events):
         # background of text box (refreshes)
@@ -35,10 +38,7 @@ class UserInput:
         # Blit its surface onto the screen
         self.screen.blit(self.text_input.get_surface(), self.position)
 
-        # cut string to max characters
-        self.text_input.input_string = self.text_input.input_string[:self.max_characters]
-        if self.text_input.cursor_position > self.max_characters:
-            self.text_input.cursor_position = self.max_characters
+
 
     def validate_input(self, string):
         try:
@@ -54,3 +54,7 @@ class UserInput:
             return int(string)
         else:
             Utilities.show_error(self.screen, "The input must be a number")
+
+    def add(self, num):
+        self.text_input.input_string = str(int(self.text_input.input_string) + num)
+        self.text_input.cursor_position = len(self.text_input.input_string)
