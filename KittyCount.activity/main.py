@@ -25,7 +25,6 @@ def main():
     number_line = NumberLine(screen, w, h)
     number_line.display()
 
-
     # exit logic
     while not done:
         clock = pygame.time.Clock()
