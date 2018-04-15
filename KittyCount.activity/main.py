@@ -56,7 +56,7 @@ def main():
         x, y = screen.get_size()
         clock = pygame.time.Clock()
         events = pygame.event.get()
-
+        
         # draw UI
         user_input.display(events)
 
