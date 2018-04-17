@@ -43,5 +43,11 @@ class GameController:
                     if self.cat_position == self.mouse_position:
                         self.mouse_position = self.mouse.set_random_position(self.cat_position)
                         self.cat.display()
+                        self.number_line.clear()
+                        self.number_line.next_level()
                         print("you caught the mouse!")
+                if event.button_type == "add":
+                    self.ui.user_input.add(1)
+                if event.button_type == "sub":
+                    self.ui.user_input.add(-1)
 
