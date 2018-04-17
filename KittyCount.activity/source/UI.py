@@ -23,10 +23,3 @@ class UI:
         self.button_sub.display(events)
         self.button_go.display(events)
 
-        for event in events:
-            if event.type == pygame.USEREVENT:
-                if event.button_type == "add":
-                    self.user_input.add(1)
-                if event.button_type == "sub":
-                    self.user_input.add(-1)
-
