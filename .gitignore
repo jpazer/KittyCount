@@ -3,3 +3,5 @@ dist/
 po/
 
 .idea/workspace.xml
+
+\.idea/
