@@ -9,6 +9,7 @@ class Character:
     imageWidth = 10  # width of the image
     screen = 0  # screen to display on
     positions = []  # array of circle positions
+    currentPosition = 0
     x = 0  # x position of character
     y = 0  # y position of character
 
@@ -19,7 +20,6 @@ class Character:
         self.imageWidth = _image_width
         self.screen = screen
         self.img = pygame.image.load(self.displayImage)
-        self.set_position(other_character_x)
 
     def get_x_pos(self):
         return self.x
@@ -38,19 +38,31 @@ class Character:
 
     def set_image_width(self, _image_width):
         self.imageWidth = _image_width
-    
-    def set_position(self, _other_character_x):
+
+    def update_position(self, new_pos):
+        pygame.draw.rect(self.screen, (255, 255, 255), (self.x, self.y, self.imageWidth, self.imageHeight), 0)
+
+        self.currentPosition = new_pos
+        x, y = self.positions[self.currentPosition]
+        self.set_x_pos(x - (self.imageWidth / 2))
+        self.set_y_pos(y - (self.imageHeight + 20))
+        self.display()
+
+    def set_random_position(self, _other_character_position):
         rand = random.randint(0, (len(self.positions) - 1))
-        valid = False
-        
-        while not valid:
-            x, y = self.positions[rand]
-            self.set_x_pos(x - (self.imageWidth / 2))
-            self.set_y_pos(y - (self.imageHeight + 20))
-            print(x)
-            if x != _other_character_x:
-                valid = True
+
+        if rand != _other_character_position:
+            self.update_position(rand)
+            return rand
+        else:
+            self.set_random_position(_other_character_position)
 
     def display(self):
         self.screen.blit(pygame.transform.scale(self.img, (self.imageHeight, self.imageWidth)), (self.x, self.y))
+
+    def move(self, _num):
+        if self.currentPosition + _num >= 0 and self.currentPosition <= len(self.positions):
+            self.currentPosition += _num
+            self.update_position(self.currentPosition)
+            return self.currentPosition
 
