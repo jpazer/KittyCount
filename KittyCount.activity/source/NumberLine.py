@@ -5,6 +5,7 @@ from source.NumberCircle import NumberCircle
 class NumberLine:
     num_of_points = 20  # num of points on number line
     circle_pos = []
+    level = 1
 
     def __init__(self, screen, w, h):
         self.screen = screen
@@ -21,6 +22,13 @@ class NumberLine:
         for num in range(0, 20):
             number = str(num)
             position = (self.start_x + num * self.spacing, self.number_line_y)
-            circle = NumberCircle(position, number, self.screen)
+            circle = NumberCircle(self.screen, position, number, self.level)
             self.circle_pos.append(position)
             circle.display()
+
+    def clear(self):
+        return
+
+    def next_level(self):
+        self.level += 1
+        self.display()
