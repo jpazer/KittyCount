@@ -1,31 +1,35 @@
 import pygame
+import random
 
 class character:
-    xPos = 0 #the x coordinate of the cat image
-    yPos = 0 #the y coordinate of the cat image
     displayImage = "" #path to the image file to be displayed
     imageHeight = 10 #height of the image
     imageWidth= 10 #width of the image
     screen = 0 #screen to display on
-    
-    def __init__(self, _xPos, _yPos,_displayImage, _imageHeight, _imageWidth, screen):
-        self.xPos = _xPos
-        self.yPos = _yPos
+    positions = [] # array of circle positions
+    xPos = 0 #x position of character
+    yPos = 0 #y position of character
+
+    def __init__(self, _positions,_displayImage, _imageHeight, _imageWidth, screen, otherCharacterX = -1):
+        self.positions = _positions
         self.displayImage = _displayImage
         self.imageHeight = _imageHeight
         self.imageWidth = _imageWidth
         self.screen = screen
+        self.img = pygame.image.load(self.displayImage)
+        self.setPosition(otherCharacterX)
 
-    def getxPos():
+
+    def getxPos(self):
         return self.xPos
 
-    def getyPos():
+    def getyPos(self):
         return yPos
 
-    def setxPos(_xPos):
+    def setxPos(self, _xPos):
         self.xPos = _xPos
 
-    def setyPos(_yPos):
+    def setyPos(self, _yPos):
         self.yPos = _yPos
 
     def setImageHeight(_imageHeight):
@@ -33,11 +37,20 @@ class character:
 
     def setImageWidth(_imageWidth):
         self.imageWidth = _imageWidth
+    
+    def setPosition(self, otherCharacterX):
+        rand = random.randint(0, (len(self.positions) - 1 ))
+        valid = False
+        
+        while not valid:
+            xPos, yPos = self.positions[rand]
+            self.setxPos(xPos - (self.imageWidth / 2) )
+            self.setyPos(yPos - (self.imageHeight + 20))
+            print (xPos)            
+            if xPos != otherCharacterX:
+                valid = True
+
 
     def display(self):
-        img = pygame.image.load(self.displayImage)
-        y = (self.yPos - self.imageHeight - 20)
-        x = (self.xPos - (self.imageWidth / 2))
-        self.screen.blit(pygame.transform.scale(img,(self.imageHeight,self.imageWidth)),(x,y))
-        
+        self.screen.blit(pygame.transform.scale(self.img, (self.imageHeight,self.imageWidth)),(self.xPos,self.yPos))
 

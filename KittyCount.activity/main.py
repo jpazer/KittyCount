@@ -1,9 +1,9 @@
 import pygame
+import random
 from Utilities import Utilities
 from UI import UI
 from NumberLine import NumberLine
 from character import character
-
 
 def main():
     pygame.init()
@@ -26,14 +26,14 @@ def main():
     number_line = NumberLine(screen, w, h)
     number_line.display()
     
+    #
+
     #display cat
-    cat_x, cat_y = number_line.circle_pos[7]
-    cat = character(cat_x, cat_y, "../Assets/cat1.png", 100, 100, screen)
+    cat = character(number_line.circle_pos, "../Assets/cat1.png", 100, 100, screen)
     cat.display()
             
     #display mouse
-    mouse_x, mouse_y = number_line.circle_pos[3]
-    mouse = character (mouse_x, mouse_y, "../Assets/mouse3.png", 50, 50, screen)
+    mouse = character (number_line.circle_pos, "../Assets/mouse3.png", 50, 50, screen, cat.getxPos())
     mouse.display()
 
     # exit logic
