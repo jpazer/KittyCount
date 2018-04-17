@@ -1,14 +1,13 @@
 import pygame
-from NumberCircle import NumberCircle
-
+from source.NumberCircle import NumberCircle
 
 
 class NumberLine:
     num_of_points = 20  # num of points on number line
+    circle_pos = []
 
-    def __init__(self,screen, w, h):
+    def __init__(self, screen, w, h):
         self.screen = screen
-
         self.number_line_y = int(h / 2)  # y of where number line is drawn
         self.spacing = int(w / self.num_of_points)  # in pixels
         self.start_x = int(self.spacing / 2)  # x there the first point is and the number line starts
@@ -23,4 +22,5 @@ class NumberLine:
             number = str(num)
             position = (self.start_x + num * self.spacing, self.number_line_y)
             circle = NumberCircle(position, number, self.screen)
+            self.circle_pos.append(position)
             circle.display()
