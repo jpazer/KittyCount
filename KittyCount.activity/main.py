@@ -27,11 +27,13 @@ def main():
     number_line.display()
     
     #display cat
-    cat = character(200,200,"../Assets/cat1.png",100,100,screen)
+    cat_x, cat_y = number_line.circle_pos[7]
+    cat = character(cat_x, cat_y, "../Assets/cat1.png", 100, 100, screen)
     cat.display()
             
     #display mouse
-    mouse = character (500,200,"../Assets/mouse1.png",100,100,screen)
+    mouse_x, mouse_y = number_line.circle_pos[3]
+    mouse = character (mouse_x, mouse_y, "../Assets/mouse3.png", 50, 50, screen)
     mouse.display()
 
     # exit logic

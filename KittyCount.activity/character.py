@@ -36,6 +36,8 @@ class character:
 
     def display(self):
         img = pygame.image.load(self.displayImage)
-        self.screen.blit(pygame.transform.scale(img,(self.imageHeight,self.imageWidth)),(self.xPos,self.yPos))
+        y = (self.yPos - self.imageHeight - 20)
+        x = (self.xPos - (self.imageWidth / 2))
+        self.screen.blit(pygame.transform.scale(img,(self.imageHeight,self.imageWidth)),(x,y))
         
 
