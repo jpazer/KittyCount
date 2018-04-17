@@ -1,5 +1,5 @@
 import pygame
-from NumberCircle import NumberCircle
+from source.NumberCircle import NumberCircle
 
 
 class NumberLine:

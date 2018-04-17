@@ -1,6 +1,6 @@
-from UserInput import UserInput
-from Button import Button
-from Utilities import Utilities
+from source.UserInput import UserInput
+from source.Button import Button
+from source.Utilities import Utilities
 
 
 class UI:

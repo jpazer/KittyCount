@@ -1,5 +1,5 @@
 import pygame
-from Utilities import Utilities
+from source.Utilities import Utilities
 
 
 class NumberCircle:
