@@ -61,7 +61,7 @@ class Character:
         self.screen.blit(pygame.transform.scale(self.img, (self.imageHeight, self.imageWidth)), (self.x, self.y))
 
     def move(self, _num):
-        if self.currentPosition + _num >= 0 and self.currentPosition <= len(self.positions):
+        if self.currentPosition + _num >= 0 and self.currentPosition + _num <= len(self.positions):
             self.currentPosition += _num
             self.update_position(self.currentPosition)
             return self.currentPosition

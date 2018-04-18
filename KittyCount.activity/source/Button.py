@@ -43,7 +43,6 @@ class Button:
         if self.check_button_pressed(events):
             pygame.event.post(pygame.event.Event(pygame.USEREVENT, button_type=self.button_type))
 
-
         # background of button
         pygame.draw.rect(self.screen, self.color,
                          (self.position[0] - self.padding_x,
