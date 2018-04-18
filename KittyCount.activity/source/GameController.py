@@ -11,7 +11,6 @@ class GameController:
     left_cat = "../assets/catLeft.png"
     right_cat = "../assets/catRight.png"
 
-
     def __init__(self, _screen):
         self.screen = _screen
 
@@ -63,10 +62,14 @@ class GameController:
                     self.cat.set_display_image(self.left_cat)
                     self.cat.erase()
                     self.cat.display()
+                    self.mouse.erase()
+                    self.mouse.display()
                 if self.ui.user_input.get_input() > 0:
                     self.cat.set_display_image(self.right_cat)
                     self.cat.erase()
                     self.cat.display()
+                    self.mouse.erase()
+                    self.mouse.display()
 
 
 
