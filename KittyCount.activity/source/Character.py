@@ -13,13 +13,13 @@ class Character:
     x = 0  # x position of character
     y = 0  # y position of character
 
-    def __init__(self, _positions, _display_image, _image_height, _image_width, screen, other_character_x=-1):
+    def __init__(self, _positions, _display_image, _image_height, _image_width, _screen, other_character_x=-1):
         self.positions = _positions
         self.displayImage = _display_image
         self.imageHeight = _image_height
         self.imageWidth = _image_width
-        self.screen = screen
-        self.img = pygame.image.load(self.displayImage)
+        self.screen = _screen
+
 
     def get_x_pos(self):
         return self.x
@@ -32,6 +32,9 @@ class Character:
 
     def set_y_pos(self, _y):
         self.y = _y
+    
+    def set_display_image(self, _displayImage):
+        self.displayImage = _displayImage
 
     def set_image_height(self, _image_height):
         self.imageHeight = _image_height
@@ -40,7 +43,7 @@ class Character:
         self.imageWidth = _image_width
 
     def update_position(self, new_pos):
-        pygame.draw.rect(self.screen, (255, 255, 255), (self.x, self.y, self.imageWidth, self.imageHeight), 0)
+        self.erase()
 
         self.currentPosition = new_pos
         x, y = self.positions[self.currentPosition]
@@ -58,7 +61,11 @@ class Character:
             self.set_random_position(_other_character_position)
 
     def display(self):
+        self.img = pygame.image.load(self.displayImage)
         self.screen.blit(pygame.transform.scale(self.img, (self.imageHeight, self.imageWidth)), (self.x, self.y))
+
+    def erase(self):
+        pygame.draw.rect(self.screen, (255, 255, 255), (self.x, self.y, self.imageWidth, self.imageHeight), 0)
 
     def move(self, _num):
         if self.currentPosition + _num >= 0 and self.currentPosition + _num <= len(self.positions):

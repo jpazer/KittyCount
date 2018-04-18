@@ -8,6 +8,10 @@ from source.Character import Character
 class GameController:
     level = 1
 
+    left_cat = "../assets/catLeft.png"
+    right_cat = "../assets/catRight.png"
+
+
     def __init__(self, _screen):
         self.screen = _screen
 
@@ -23,12 +27,12 @@ class GameController:
         self.number_line.display()
 
         # display cat
-        self.cat = Character(self.number_line.circle_pos, "../Assets/cat1.png", 100, 100, self.screen)
+        self.cat = Character(self.number_line.circle_pos, self.left_cat, 100, 100, self.screen)
         self.cat_position = self.cat.set_random_position(-1)
         self.cat.display()
 
         # display mouse
-        self.mouse = Character(self.number_line.circle_pos, "../Assets/mouse3.png", 50, 50, self.screen, self.cat.get_x_pos())
+        self.mouse = Character(self.number_line.circle_pos, "../assets/mouse.png", 50, 50, self.screen, self.cat.get_x_pos())
         self.mouse_position = self.mouse.set_random_position(self.cat_position)
         self.mouse.display()
 
@@ -54,4 +58,20 @@ class GameController:
                     self.ui.user_input.add(1)
                 if event.button_type == "sub":
                     self.ui.user_input.add(-1)
+
+                if self.ui.user_input.get_input() < 0:
+                    self.cat.set_display_image(self.left_cat)
+                    self.cat.erase()
+                    self.cat.display()
+                if self.ui.user_input.get_input() > 0:
+                    self.cat.set_display_image(self.right_cat)
+                    self.cat.erase()
+                    self.cat.display()
+
+
+
+
+
+
+
 
