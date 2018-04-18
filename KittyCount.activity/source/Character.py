@@ -68,7 +68,7 @@ class Character:
         pygame.draw.rect(self.screen, (255, 255, 255), (self.x, self.y, self.imageWidth, self.imageHeight), 0)
 
     def move(self, _num):
-        if self.currentPosition + _num >= 0 and self.currentPosition <= len(self.positions):
+        if self.currentPosition + _num >= 0 and self.currentPosition + _num <= len(self.positions):
             self.currentPosition += _num
             self.update_position(self.currentPosition)
             return self.currentPosition

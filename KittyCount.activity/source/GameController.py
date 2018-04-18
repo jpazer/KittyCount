@@ -6,6 +6,7 @@ from source.Character import Character
 
 
 class GameController:
+    level = 1
 
     left_cat = "../assets/catLeft.png"
     right_cat = "../assets/catRight.png"
@@ -35,6 +36,8 @@ class GameController:
         self.mouse_position = self.mouse.set_random_position(self.cat_position)
         self.mouse.display()
 
+        self.ui.update_level(self.level)
+
     def loop(self, events):
         # draw UI
         self.ui.display(events)
@@ -42,12 +45,13 @@ class GameController:
         for event in events:
             if event.type == pygame.USEREVENT:
                 if event.button_type == "go":
-                    self.cat_position = self.cat.move(self.ui.user_input.get_input())
+                    self.cat_position = self.cat.move(int(self.ui.user_input.get_input()/self.level))
                     self.ui.user_input.clear()
                     if self.cat_position == self.mouse_position:
                         self.mouse_position = self.mouse.set_random_position(self.cat_position)
                         self.cat.display()
-                        self.number_line.clear()
+                        self.level += 1
+                        self.ui.update_level(self.level)
                         self.number_line.next_level()
                         print("you caught the mouse!")
                 if event.button_type == "add":

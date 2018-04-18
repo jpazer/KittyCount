@@ -23,3 +23,7 @@ class UI:
         self.button_sub.display(events)
         self.button_go.display(events)
 
+    def update_level(self, level):
+        # display level
+        pygame.draw.rect(self.screen, (255, 255, 255), (10, 10, 200, 50), 0)
+        self.screen.blit(Utilities.make_text_surface("Level: " + str(level), 30), (10, 10))
