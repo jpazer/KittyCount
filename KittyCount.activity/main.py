@@ -1,11 +1,6 @@
 import pygame
-<<<<<<< HEAD
-from game.Utilities import Utilities
-from game.UI import UI
-=======
 from source.GameController import GameController
 
->>>>>>> development
 
 def main():
     pygame.init()
@@ -17,20 +12,15 @@ def main():
 
     game_controller = GameController(screen)
 
-<<<<<<< HEAD
+
 
     clock = pygame.time.Clock()
-    # exit logic
-=======
->>>>>>> development
+
     while not done:
         events = pygame.event.get()
-<<<<<<< HEAD
-=======
 
         game_controller.loop(events)
 
->>>>>>> development
         for event in events:
             if event.type == pygame.QUIT:
                 done = True
@@ -38,15 +28,6 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     done = True
 
-<<<<<<< HEAD
-        
-        # draw UI
-        screen.fill((255, 255, 255))
-        ui.display(events)
-        
-
-=======
->>>>>>> development
         pygame.display.update()
         clock.tick(30)
 
