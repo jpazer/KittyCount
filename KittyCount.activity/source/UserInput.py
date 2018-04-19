@@ -1,5 +1,5 @@
 import pygame
-from game.Utilities import Utilities
+from source.Utilities import Utilities
 from libraries.pygame_textinput.pygame_textinput import TextInput
 
 
@@ -17,8 +17,7 @@ class UserInput:
         self.text_input = TextInput(font_size=self.font_size)
         self.position = position
         # set starting value
-        self.text_input.input_string = "0"
-        self.text_input.cursor_position = 1
+        self.clear()
 
     def display(self, events):
         # background of text box (refreshes)
@@ -58,3 +57,7 @@ class UserInput:
     def add(self, num):
         self.text_input.input_string = str(int(self.text_input.input_string) + num)
         self.text_input.cursor_position = len(self.text_input.input_string)
+
+    def clear(self):
+        self.text_input.input_string = "0"
+        self.text_input.cursor_position = 1
