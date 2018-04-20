@@ -8,13 +8,15 @@ def main():
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     # screen = pygame.display.set_mode((0, 0))  # windowed app for DEV only
     screen.fill((255, 255, 255))
-    pygame.display.flip()
     done = False
 
     game_controller = GameController(screen)
 
+
+
+    clock = pygame.time.Clock()
+
     while not done:
-        clock = pygame.time.Clock()
         events = pygame.event.get()
 
         game_controller.loop(events)
