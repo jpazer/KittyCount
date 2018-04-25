@@ -57,5 +57,5 @@ class UserInput:
         self.text_input.cursor_position = len(self.text_input.input_string)
 
     def clear(self):
-        self.text_input.input_string = "0"
-        self.text_input.cursor_position = 1
+        self.text_input.input_string = ""
+        self.text_input.cursor_position = 0
