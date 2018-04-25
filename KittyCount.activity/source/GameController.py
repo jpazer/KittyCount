@@ -46,36 +46,40 @@ class GameController:
         self.ui.display(events)
 
         for event in events:
-            if event.type == self.GO:
-                self.cat_position = self.cat.move(int(self.ui.user_input.get_input()/self.level))
-                self.ui.user_input.clear()
-                if self.cat_position == self.mouse_position:
-                    self.mouse_position = self.mouse.set_random_position(self.cat_position)
-                    self.cat.display()
-                    self.level += 1
-                    self.ui.update_level(self.level)
-                    self.number_line.next_level()
-                    print("you caught the mouse!")
+            if event.type == self.GO or (event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN):
+                if self.ui.user_input.get_input() is not None:
+                    self.cat_position = self.cat.move(int(self.ui.user_input.get_input()/self.level))
+                    self.ui.user_input.clear()
+                    if self.cat_position == self.mouse_position:
+                        self.mouse_position = self.mouse.set_random_position(self.cat_position)
+                        self.cat.display()
+                        self.level += 1
+                        self.ui.update_level(self.level)
+                        self.number_line.next_level()
+                        print("you caught the mouse!")
             if event.type == self.ADD:
-                self.ui.user_input.add(1)
+                if self.ui.user_input.get_input() is None:
+                    self.ui.user_input.text_input.input_string = str(1)
+                else:
+                    self.ui.user_input.add(1)
             if event.type == self.SUB:
-                self.ui.user_input.add(-1)
+                if self.ui.user_input.get_input() is None:
+                    self.ui.user_input.text_input.input_string = str(1)
+                else:
+                    self.ui.user_input.add(-1)
 
-            if self.ui.user_input.get_input() < 0:
+            if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
                 self.cat.set_display_image(self.left_cat)
                 self.cat.erase()
                 self.cat.display()
                 self.mouse.erase()
                 self.mouse.display()
-            if self.ui.user_input.get_input() > 0:
+            if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() > 0:
                 self.cat.set_display_image(self.right_cat)
                 self.cat.erase()
                 self.cat.display()
                 self.mouse.erase()
                 self.mouse.display()
-
-
-
 
 
 
