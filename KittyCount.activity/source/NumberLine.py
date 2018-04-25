@@ -28,15 +28,19 @@ class NumberLine:
     def display_numbers(self):
         for num in range(0, len(self.circle_pos)):
             # draw number beneath circle
-            self.screen.blit(Utilities.make_text_surface(str(num * self.level)),
-                             (self.circle_pos[num][0] - 5, self.circle_pos[num][1] + 15))
+            x = self.circle_pos[num][0] - 5
+            y = self.circle_pos[num][1] + 15
+            text_surface = Utilities.make_text_surface(str(num * self.level), 20)
+            text_width = text_surface.get_size()
+            x = x - (text_width[0]/4)
+            self.screen.blit(text_surface, (x, y))
 
     def clear_numbers(self):
         # cover over numbers
         pygame.draw.rect(self.screen, (255, 255, 255),
                          (0,
                           self.number_line_y + 10,
-                          Utilities.get_width_height()[0], 20), 0)
+                          Utilities.get_width_height()[0], 30), 0)
 
     def display(self):
         # draw line
