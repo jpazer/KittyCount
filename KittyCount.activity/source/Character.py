@@ -21,7 +21,6 @@ class Character:
         self.imageWidth = _image_width
         self.screen = _screen
 
-
     def get_x_pos(self):
         return self.x
 

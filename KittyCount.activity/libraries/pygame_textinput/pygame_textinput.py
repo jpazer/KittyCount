@@ -22,7 +22,9 @@ class TextInput:
                         text_color=(0, 0, 0),
                         cursor_color=(0, 0, 1),
                         repeat_keys_initial_ms=400,
-                        repeat_keys_interval_ms=35):
+                        repeat_keys_interval_ms=35,
+                        max_chars=-1
+                 ):
         """
         Args:
             font_family: Name or path of the font that should be used. Default is pygame-font
@@ -41,6 +43,7 @@ class TextInput:
         self.input_string = "" # Inputted text
         if not os.path.isfile(font_family): font_family = pygame.font.match_font(font_family)
         self.font_object = pygame.font.Font(font_family, font_size)
+        self.max_chars = max_chars
 
         # Text-surface will be created during the first update call:
         self.surface = pygame.Surface((1, 1))
@@ -99,11 +102,13 @@ class TextInput:
 
                 else:
                     # If no special key is pressed, add unicode of key to input_string
-                    if event.key in self.valid_inputs and (len(self.input_string) < 3):
-                        self.input_string = self.input_string[:self.cursor_position] + \
-                                            event.unicode + \
-                                            self.input_string[self.cursor_position:]
-                        self.cursor_position += len(event.unicode) # Some are empty, e.g. K_UP
+                    if event.key in self.valid_inputs:
+                        if self.max_chars == -1 or len(self.input_string) < self.max_chars:
+
+                            self.input_string = self.input_string[:self.cursor_position] + \
+                                                event.unicode + \
+                                                self.input_string[self.cursor_position:]
+                            self.cursor_position += len(event.unicode) # Some are empty, e.g. K_UP
 
             elif event.type == pl.KEYUP:
                 # *** Because KEYUP doesn't include event.unicode, this dict is stored in such a weird way

@@ -48,29 +48,50 @@ class GameController:
         for event in events:
 
             if event.type == self.GO or (event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN):
-                if self.ui.user_input.get_input() is not None:
-                  if self.ui.user_input.get_input() % self.level != 0:
-                    Utilities.show_error(self.screen,
-                                         "This number moves the cat to a number that is not on the number line.")
-                    self.cat_position = self.cat.move(int(self.ui.user_input.get_input()/self.level))
-                    self.ui.user_input.clear()
-                    if self.cat_position == self.mouse_position:
-                        self.mouse_position = self.mouse.set_random_position(self.cat_position)
-                        self.cat.display()
-                        self.level += 1
-                        self.ui.update_level(self.level)
-                        self.number_line.next_level()
-                        print("you caught the mouse!")
+                Utilities.show_error(self.screen, "")  # clear previous error
+                input_num = self.ui.user_input.get_input()
+
+                if input_num is not None:
+
+                    if input_num % self.level == 0:
+                        new_position = int(input_num/self.level)
+
+                        if self.cat_position + new_position >= 0:
+
+                            if self.cat_position + new_position < self.number_line.num_of_points:
+                                self.cat_position = self.cat.move(new_position)
+                                self.ui.user_input.clear()
+
+                                # debug print statements
+                                print("New Position: " + str(new_position))
+                                print("Cat Position: " + str(self.cat_position))
+                                print("Mouse Position: " + str(self.mouse_position))
+
+                                if self.cat_position == self.mouse_position:
+                                    self.mouse_position = self.mouse.set_random_position(self.cat_position)
+                                    self.cat.display()
+                                    self.level += 1
+
+                                    if self.level > 50:
+                                        self.level = 1
+
+                                    self.ui.update_level(self.level)
+                                    self.number_line.change_level(self.level)
+                            else:
+                                Utilities.show_error(self.screen, str(input_num) +
+                                                     " moves the cat off of the number line. Try Again!")
+                        else:
+                            Utilities.show_error(self.screen, str(input_num) +
+                                                 " moves the cat off of the number line. Try Again!")
+                    else:
+                        Utilities.show_error(self.screen, str(self.ui.user_input.get_input()) +
+                                             " moves the cat to a number that is not on the number line.")
+                else:
+                    Utilities.show_error(self.screen, "Please type a number and try again!")
 
             if event.type == self.ADD:
-                if self.ui.user_input.get_input() is None:
-                    self.ui.user_input.text_input.input_string = str(1)
-                else:
                     self.ui.user_input.add(1)
             if event.type == self.SUB:
-                if self.ui.user_input.get_input() is None:
-                    self.ui.user_input.text_input.input_string = str(1)
-                else:
                     self.ui.user_input.add(-1)
 
             if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
