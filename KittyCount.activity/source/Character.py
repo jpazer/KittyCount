@@ -1,5 +1,6 @@
 import pygame
 import random
+from source.Utilities import Utilities
 
 
 class Character:
@@ -61,15 +62,22 @@ class Character:
             self.set_random_position(_other_character_position)
 
     def display(self):
-        self.img = pygame.image.load(self.displayImage)
-        self.screen.blit(pygame.transform.scale(self.img, (self.imageHeight, self.imageWidth)), (self.x, self.y))
+        img = pygame.image.load(self.displayImage)
+        self.screen.blit(pygame.transform.scale(img, (self.imageHeight, self.imageWidth)), (self.x, self.y))
 
     def erase(self):
         pygame.draw.rect(self.screen, (255, 255, 255), (self.x, self.y, self.imageWidth, self.imageHeight), 0)
 
     def move(self, _num):
-        if self.currentPosition + _num >= 0 and self.currentPosition + _num <= len(self.positions):
-            self.currentPosition += _num
-            self.update_position(self.currentPosition)
-            return self.currentPosition
+        if self.currentPosition + _num >= 0:
+            if self.currentPosition + _num < len(self.positions):
+                self.currentPosition += _num
+                self.update_position(self.currentPosition)
+                return self.currentPosition
+            else:
+                Utilities.show_error(self.screen, str(_num) + " moves the cat off of the number line. Try Again!")
+        else:
+            Utilities.show_error(self.screen, str(_num) + " moves the cat off of the number line. Try Again!")
+
+
 

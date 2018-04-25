@@ -21,6 +21,11 @@ class Utilities:
         return pygame.display.get_surface().get_size()
 
     @staticmethod
-    def show_error(screen, error_text, position=(10, 10)):
-        # shows helpful errors (not yet implemented)
-        screen.blit(Utilities.make_text_surface(error_text, 12), position)
+    def show_error(screen, error_text):
+        # shows helpful errors
+        w, h = Utilities.get_width_height()
+        x, y = (w/2, h/2 + 120)
+        text_surface = Utilities.make_text_surface(error_text, 16)
+        text_width = text_surface.get_size()
+        x = x - (text_width[0] / 2)
+        screen.blit(text_surface, (x, y))
