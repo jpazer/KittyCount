@@ -5,13 +5,13 @@ from source.Utilities import Utilities
 class Button:
     color = (255, 255, 255)
 
-    def __init__(self, screen, position, size, text, text_size, button_type):
+    def __init__(self, screen, position, size, text, text_size, event_num):
         self.screen = screen
         self.position = position  # x, y of button and text
         self.size = size  # w, h of button
         self.text = text  # string
         self.text_size = text_size  # pt size of text
-        self.button_type = button_type
+
 
         # make the text surface
         self.text_surface = Utilities.make_text_surface(self.text, self.text_size)
@@ -21,6 +21,8 @@ class Button:
         button_w, button_h = self.size
         self.padding_x = (button_w - text_w)/2
         self.padding_y = (button_h - text_h)/2
+
+        self.event = pygame.event.Event(pygame.USEREVENT + event_num)
 
     def check_hover(self):
 
@@ -41,7 +43,7 @@ class Button:
             self.color = (255, 255, 255)
 
         if self.check_button_pressed(events):
-            pygame.event.post(pygame.event.Event(pygame.USEREVENT, button_type=self.button_type))
+            pygame.event.post(self.event)
 
         # background of button
         pygame.draw.rect(self.screen, self.color,

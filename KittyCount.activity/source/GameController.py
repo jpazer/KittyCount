@@ -11,6 +11,10 @@ class GameController:
     left_cat = "../assets/catLeft.png"
     right_cat = "../assets/catRight.png"
 
+    ADD = pygame.USEREVENT + 1
+    SUB = pygame.USEREVENT + 2
+    GO = pygame.USEREVENT + 3
+
     def __init__(self, _screen):
         self.screen = _screen
 
@@ -42,34 +46,33 @@ class GameController:
         self.ui.display(events)
 
         for event in events:
-            if event.type == pygame.USEREVENT:
-                if event.button_type == "go":
-                    self.cat_position = self.cat.move(int(self.ui.user_input.get_input()/self.level))
-                    self.ui.user_input.clear()
-                    if self.cat_position == self.mouse_position:
-                        self.mouse_position = self.mouse.set_random_position(self.cat_position)
-                        self.cat.display()
-                        self.level += 1
-                        self.ui.update_level(self.level)
-                        self.number_line.next_level()
-                        print("you caught the mouse!")
-                if event.button_type == "add":
-                    self.ui.user_input.add(1)
-                if event.button_type == "sub":
-                    self.ui.user_input.add(-1)
+            if event.type == self.GO:
+                self.cat_position = self.cat.move(int(self.ui.user_input.get_input()/self.level))
+                self.ui.user_input.clear()
+                if self.cat_position == self.mouse_position:
+                    self.mouse_position = self.mouse.set_random_position(self.cat_position)
+                    self.cat.display()
+                    self.level += 1
+                    self.ui.update_level(self.level)
+                    self.number_line.next_level()
+                    print("you caught the mouse!")
+            if event.type == self.ADD:
+                self.ui.user_input.add(1)
+            if event.type == self.SUB:
+                self.ui.user_input.add(-1)
 
-                if self.ui.user_input.get_input() < 0:
-                    self.cat.set_display_image(self.left_cat)
-                    self.cat.erase()
-                    self.cat.display()
-                    self.mouse.erase()
-                    self.mouse.display()
-                if self.ui.user_input.get_input() > 0:
-                    self.cat.set_display_image(self.right_cat)
-                    self.cat.erase()
-                    self.cat.display()
-                    self.mouse.erase()
-                    self.mouse.display()
+            if self.ui.user_input.get_input() < 0:
+                self.cat.set_display_image(self.left_cat)
+                self.cat.erase()
+                self.cat.display()
+                self.mouse.erase()
+                self.mouse.display()
+            if self.ui.user_input.get_input() > 0:
+                self.cat.set_display_image(self.right_cat)
+                self.cat.erase()
+                self.cat.display()
+                self.mouse.erase()
+                self.mouse.display()
 
 
 
