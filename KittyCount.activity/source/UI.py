@@ -8,10 +8,14 @@ class UI:
 
     def __init__(self, screen, x, y):
         # make UI
-        self.user_input = UserInput(screen, (x + 108, y + 20))
-        self.button_add = Button(screen, (x + 280, y), (80, 90), "+", 80, 1)
-        self.button_sub = Button(screen, (x, y), (80, 90), "-", 80, 2)
-        self.button_go = Button(screen, (x + 118, y + 95), (370, 70), "Go", 60, 3)
+        ui_width = 370
+        ui_height = 160
+        x = x - ui_width/2
+
+        self.button_sub = Button(screen, (x, y), (80, (ui_height*0.56)), "-", 80, 2)
+        self.user_input = UserInput(screen, (x + 85, y), 200, ui_height*0.56)
+        self.button_add = Button(screen, (x + 290, y), (80, (ui_height*0.56)), "+", 80, 1)
+        self.button_go = Button(screen, (x, y + 95), (ui_width, (ui_height*0.44)), "Go", 60, 3)
         self.screen = screen
 
     def display(self, events):

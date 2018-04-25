@@ -23,7 +23,7 @@ class GameController:
         self.screen = _screen
 
         # draw UI
-        self.ui = UI(self.screen, self.w / 2 - 200, self.h / 2 + 150)
+        self.ui = UI(self.screen, self.w / 2, self.h / 2 + 150)
 
         # display Number Line
         self.number_line = NumberLine(self.screen, self.w, self.h)
@@ -47,6 +47,10 @@ class GameController:
 
         for event in events:
             if event.type == self.GO:
+                if self.ui.user_input.get_input() % self.level != 0:
+                    Utilities.show_error(self.screen,
+                                         "This number moves the cat to a number that is not on the number line.")
+
                 self.cat_position = self.cat.move(int(self.ui.user_input.get_input()/self.level))
                 self.ui.user_input.clear()
                 if self.cat_position == self.mouse_position:
@@ -55,7 +59,6 @@ class GameController:
                     self.level += 1
                     self.ui.update_level(self.level)
                     self.number_line.next_level()
-                    print("you caught the mouse!")
             if event.type == self.ADD:
                 self.ui.user_input.add(1)
             if event.type == self.SUB:

@@ -12,7 +12,6 @@ class Button:
         self.text = text  # string
         self.text_size = text_size  # pt size of text
 
-
         # make the text surface
         self.text_surface = Utilities.make_text_surface(self.text, self.text_size)
 
@@ -28,10 +27,10 @@ class Button:
 
         # check if the mouse is in the bounds of this button
         x, y = pygame.mouse.get_pos()
-        if x > self.position[0] - self.padding_x:
-            if x < self.position[0] - self.padding_x + self.size[0]:
-                if y > self.position[1] - self.padding_y:
-                    if y < self.position[1] - self.padding_y + self.size[1]:
+        if x > self.position[0]:
+            if x < self.position[0] + self.size[0]:
+                if y > self.position[1]:
+                    if y < self.position[1] + self.size[1]:
                         return True
         return False
 
@@ -47,18 +46,18 @@ class Button:
 
         # background of button
         pygame.draw.rect(self.screen, self.color,
-                         (self.position[0] - self.padding_x,
-                          self.position[1] - self.padding_y,
+                         (self.position[0],
+                          self.position[1],
                           self.size[0], self.size[1]), 0)
 
         # border of button
         pygame.draw.rect(self.screen, (0, 0, 0),
-                         (self.position[0] - self.padding_x,
-                          self.position[1] - self.padding_y,
+                         (self.position[0],
+                          self.position[1],
                           self.size[0], self.size[1]), 1)
 
         # draw button text to screen
-        self.screen.blit(self.text_surface, self.position)
+        self.screen.blit(self.text_surface, (self.position[0] + self.padding_x, self.position[1] + self.padding_y,))
 
     def check_button_pressed(self, events):
         for event in events:

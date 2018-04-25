@@ -12,8 +12,6 @@ def main():
 
     game_controller = GameController(screen)
 
-
-
     clock = pygame.time.Clock()
 
     while not done:

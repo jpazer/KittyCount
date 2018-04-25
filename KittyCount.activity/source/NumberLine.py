@@ -13,7 +13,7 @@ class NumberLine:
         self.screen = screen
         self.number_line_y = int(h / 2)  # y of where number line is drawn
         self.spacing = int(w / self.num_of_points)  # in pixels
-        self.start_x = int(self.spacing / 2)  # x there the first point is and the number line starts
+        self.start_x = int(self.spacing / 2)  # x where the first point is and the number line starts
         self.end_x = int(w - self.spacing / 2)  # x where the last point is and the number line ends
 
     def display_circles(self):
