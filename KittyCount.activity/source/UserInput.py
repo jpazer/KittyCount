@@ -6,13 +6,12 @@ from libraries.pygame_textinput.pygame_textinput import TextInput
 class UserInput:
     input = ""
     font_size = 80
-    padding_x = 50
+    padding_x = 30
     padding_y = 20
-    max_characters = 3
 
     def __init__(self, screen, position, width, height):
         self.screen = screen
-        self.text_input = TextInput(font_size=self.font_size)
+        self.text_input = TextInput(font_size=self.font_size, max_chars=4)
         self.position = position
         self.height = height
         self.width = width
@@ -35,7 +34,7 @@ class UserInput:
         self.text_input.update(events)
 
         # Blit its surface onto the screen
-        self.screen.blit(self.text_input.get_surface(), (self.position[0] + self.padding_x,self.position[1] + self.padding_y))
+        self.screen.blit(self.text_input.get_surface(), (self.position[0] + self.padding_x, self.position[1] + self.padding_y))
 
     def validate_input(self, string):
         try:
@@ -49,12 +48,14 @@ class UserInput:
         string = str(self.text_input.get_text())
         if self.validate_input(string):
             return int(string)
-        else:
-            Utilities.show_error(self.screen, "The input must be a number")
 
     def add(self, num):
-        self.text_input.input_string = str(int(self.text_input.input_string) + num)
-        self.text_input.cursor_position = len(self.text_input.input_string)
+        if self.get_input() is None:
+            self.text_input.input_string = str(num)
+            self.text_input.cursor_position = len(str(num))
+        else:
+            self.text_input.input_string = str(int(self.text_input.input_string) + num)
+            self.text_input.cursor_position = len(self.text_input.input_string)
 
     def clear(self):
         self.text_input.input_string = ""
