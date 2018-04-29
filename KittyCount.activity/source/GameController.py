@@ -10,7 +10,8 @@ class GameController:
     
     # Error messages constants
     CAT_TOO_FAR_MESSAGE =  " moves the cat off of the number line. Try Again!"
-    EMPTY_BOX_MESSAGE = "Please type a number and try again!"
+    EMPTY_BOX_MESSAGE = "Please type a number and try 
+    NOT_ON_THE_NUMBER_LINE_MESSAGE = " is not on this number line.  Try Again."
     
     # max level for the game.
     MAX_LEVEL = 50
@@ -86,7 +87,12 @@ class GameController:
                         else:
                             Utilities.show_error(self.screen, str(input_num) + self.CAT_TOO_FAR_MESSAGE)
                     else:
-                        Utilities.show_error(self.screen, str(self.ui.user_input.get_input()) + self.CAT_TOO_FAR_MESSAGE)
+                        equation = ""
+                        if self.ui.user_input.get_input() > 0:
+                            equation = str(self.cat_position * self.level) + " + " + str(self.ui.user_input.get_input())
+                        else:
+                            equation = str(self.cat_position * self.level) + " - " + str(self.ui.user_input.get_input())[1:]
+                        Utilities.show_error(self.screen, equation + self.NOT_ON_THE_NUMBER_LINE_MESSAGE)
                 else:
                     Utilities.show_error(self.screen, self.EMPTY_BOX_MESSAGE)
 
