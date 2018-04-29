@@ -8,6 +8,7 @@ from source.Character import Character
 
 
 class GameController:
+
     level = 1
     game_state = "start"
     
@@ -142,6 +143,9 @@ class GameController:
                 self.level = 1
                 self.game_state = "play"
                 self.game_display()
+
+            if event.type == self.QUIT:
+                pygame.event.post(pygame.event.Event(pygame.QUIT))
 
             if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
                 self.cat.set_display_image(self.LEFT_CAT)
