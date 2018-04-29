@@ -1,4 +1,5 @@
 import pygame
+import sys
 from source.Utilities import Utilities
 from source.UI import UI
 from source.NumberLine import NumberLine
@@ -24,7 +25,9 @@ class GameController:
     ADD = pygame.USEREVENT + 1
     SUB = pygame.USEREVENT + 2
     GO = pygame.USEREVENT + 3
-
+    RESTART = pygame.USEREVENT + 4
+    QUIT = pygame.USEREVENT + 5
+    
     def __init__(self, _screen):
         self.screen = _screen
 
@@ -38,6 +41,8 @@ class GameController:
         # display Number Line
         self.number_line = NumberLine(self.screen, self.w, self.h)
         self.number_line.display()
+        self.number_line.display_numbers()
+        self.number_line.change_level(self.level)
 
         # display cat
         self.cat = Character(self.number_line.circle_pos, self.LEFT_CAT, 100, 100, self.screen)
@@ -51,9 +56,11 @@ class GameController:
 
         self.ui.update_level(self.level)
 
+        self.end = False
+
     def loop(self, events):
         # draw UI
-        self.ui.display(events)
+        self.ui.display(events, self.end)
 
         for event in events:
 
@@ -78,10 +85,10 @@ class GameController:
                                     self.level += 1
 
                                     if self.level > self.MAX_LEVEL:
-                                        self.level = 1
-
-                                    self.ui.update_level(self.level)
-                                    self.number_line.change_level(self.level)
+                                        self.end = True
+                                    else:
+                                        self.ui.update_level(self.level)
+                                        self.number_line.change_level(self.level)
                             else:
                                 Utilities.show_error(self.screen, str(input_num) + self.CAT_TOO_FAR_MESSAGE)
                         else:
@@ -100,6 +107,16 @@ class GameController:
                 self.ui.user_input.add(1)
             if event.type == self.SUB:
                 self.ui.user_input.add(-1)
+
+            if event.type == self.RESTART:
+                self.screen.fill((255, 255, 255))
+                self.end = False
+                self.level = 1
+                self.number_line.display()
+                self.number_line.change_level(self.level)
+                self.ui.update_level(self.level)
+                self.cat_position = self.cat.set_random_position(-1)
+                self.mouse_position = self.mouse.set_random_position(self.cat_position)
 
             if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
                 self.cat.set_display_image(self.LEFT_CAT)
