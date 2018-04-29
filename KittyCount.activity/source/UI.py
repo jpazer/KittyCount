@@ -8,12 +8,18 @@ class UI:
 
     def __init__(self, screen, x, y):
         # make UI
-        self.x = x
-        self.y = y
+        w, h = Utilities.get_width_height()
+
         self.ui_width = 370
         self.ui_height = 160
+
+        spacing = (h - y - self.ui_height) / 2
+        y = y + spacing
+        self.y = y
+
+        self.x = x
         x = x - self.ui_width/2
-        w, h = Utilities.get_width_height()
+
         self.button_sub = Button(screen, (x, y), (80, (self.ui_height*0.56)), "-", 80, 2)
         self.user_input = UserInput(screen, (x + 85, y), 200, self.ui_height*0.56)
         self.button_add = Button(screen, (x + 290, y), (80, (self.ui_height*0.56)), "+", 80, 1)
@@ -45,7 +51,7 @@ class UI:
         help_text_padding = help_text_width * 0.1
         help_text_width = help_text_width - (help_text_padding * 2)
 
-        self.display_text("Try and catch the mouse!", w/2, 120, 30)
+        self.display_text("Try and catch the mouse!", w/2, h/4, 30)
         Utilities.draw_text(self.screen,
                             "Type the number in the box or use the + and - buttons to change it.",
                             (self.x + self.ui_width/2 + help_text_width/2 + help_text_padding, self.y,

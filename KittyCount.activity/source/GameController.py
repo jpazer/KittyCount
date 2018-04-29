@@ -66,7 +66,7 @@ class GameController:
         self.end_screen = EndScreen(self.screen, self.w / 2, self.h / 2)
 
         # make UI
-        self.ui = UI(self.screen, self.w / 2, self.h / 2 + 150)
+        self.ui = UI(self.screen, self.w / 2, self.h/2 + 50)
 
         # make Number Line
         self.number_line = NumberLine(self.screen, self.w, self.h)
