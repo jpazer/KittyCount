@@ -1,26 +1,33 @@
+import pygame
 from source.Button import Button
 from source.Utilities import Utilities
 
 
 class EndScreen:
-    def __init__(self, screen, message):
-        x, y = Utilities.get_width_height()
+    def __init__(self, screen, x, y):
+        self.x = x
+        self.y = y
         self.screen = screen
-        self.restart = Button(screen, ((x/2)-350, y/2), (300, 100), "Restart", 50, 4)
-        self.quit = Button(screen, ((x/2)+50, y/2), (300, 100), "Quit", 50, 5)
-        
-        self.message = Utilities.make_text_surface(message, 60)
+        self.restart = Button(screen, (self.x - 150, self.y), (300, 100), "Restart", 50, 4)
+        self.quit = Button(screen, (self.x - 150, self.y + 130), (300, 100), "Quit", 50, 5)
 
-        self.message_width = self.message.get_rect().width
+        self.cat = pygame.image.load("../assets/cat1.png")
+        self.mouse = pygame.image.load("../assets/mouse3.png")
 
     def display(self, events):
         self.screen.fill((255, 255, 255))
 
-        x, y = Utilities.get_width_height()
         self.restart.display(events)
         self.quit.display(events)
-        self.screen.blit(self.message, ((x/2)-(self.message_width/2), (y/2)-150))
+        self.display_text("Congratulations! You Won!", self.x, self.y-150, 60)
 
+        self.screen.blit(pygame.transform.scale(self.mouse, (70, 70)), (self.x - 300, self.y + 80))
+        self.screen.blit(pygame.transform.scale(self.cat, (170, 170)), (self.x + 200, self.y + 20))
+
+    def display_text(self, text, x, y, size):
+        text_surface = Utilities.make_text_surface(text, size)
+        text_w, text_h = text_surface.get_size()
+        self.screen.blit(text_surface, (x - text_w/2, y))
 
 
 
