@@ -8,14 +8,14 @@ from source.Character import Character
 class GameController:
     level = 1
     
-    #Error messages constants
+    # Error messages constants
     CAT_TOO_FAR_MESSAGE =  " moves the cat off of the number line. Try Again!"
     EMPTY_BOX_MESSAGE = "Please type a number and try again!"
     
-    #max level for the game.
+    # max level for the game.
     MAX_LEVEL = 50
     
-    #constants for cat and mouse pictures.
+    # constants for cat and mouse pictures.
     LEFT_CAT = "../assets/catLeft.png"
     RIGHT_CAT = "../assets/catRight.png"
     MOUSE = "../assets/mouse.png"
@@ -91,9 +91,9 @@ class GameController:
                     Utilities.show_error(self.screen, self.EMPTY_BOX_MESSAGE)
 
             if event.type == self.ADD:
-                    self.ui.user_input.add(1)
+                self.ui.user_input.add(1)
             if event.type == self.SUB:
-                    self.ui.user_input.add(-1)
+                self.ui.user_input.add(-1)
 
             if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
                 self.cat.set_display_image(self.LEFT_CAT)
@@ -107,7 +107,3 @@ class GameController:
                 self.cat.display()
                 self.mouse.erase()
                 self.mouse.display()
-
-
-
-

@@ -59,7 +59,6 @@ class Character:
             return rand
         else:
             return self.set_random_position(_other_character_position)
-        
 
     def display(self):
         img = pygame.image.load(self.displayImage)
