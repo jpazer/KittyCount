@@ -73,11 +73,11 @@ class GameController:
         self.number_line = NumberLine(self.screen, self.w, self.h)
 
         # make cat
-        self.cat = Character(self.number_line.circle_pos, self.LEFT_CAT, 100, 100, self.screen)
+        self.cat = Character(self.number_line.circle_pos, self.LEFT_CAT, self.number_line.spacing, self.number_line.spacing, self.screen)
         self.cat_position = -1
 
         # make mouse
-        self.mouse = Character(self.number_line.circle_pos, self.MOUSE, 50, 50, self.screen, self.cat.get_x_pos())
+        self.mouse = Character(self.number_line.circle_pos, self.MOUSE, int(self.number_line.spacing/2), int(self.number_line.spacing/2), self.screen, self.cat.get_x_pos())
         self.mouse_position = -1
 
         self.end = False
