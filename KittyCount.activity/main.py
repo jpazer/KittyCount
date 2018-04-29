@@ -6,7 +6,6 @@ def main():
     pygame.init()
     pygame.font.init()
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-    #screen = pygame.display.set_mode((0, 0))  # windowed app for DEV only
     screen.fill((255, 255, 255))
     done = False
 

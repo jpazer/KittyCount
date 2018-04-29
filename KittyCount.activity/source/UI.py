@@ -34,7 +34,6 @@ class UI:
             self.button_quit.display(events)
             self.button_restart.display(events)
 
-
     def update_level(self, level):
         # display level
         pygame.draw.rect(self.screen, (255, 255, 255), (10, 10, 200, 50), 0)
@@ -50,7 +49,6 @@ class UI:
                             "Move the cat by telling it how many numbers to jump. " +
                             "Use negative numbers to move backwards.",
                             (self.x-420, self.y, 320, self.ui_height), 25)
-
 
     def display_text(self, text, x, y, size):
         text_surface = Utilities.make_text_surface(text, size)
