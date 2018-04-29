@@ -12,9 +12,9 @@ class NumberLine:
     def __init__(self, screen, w, h):
         self.screen = screen
         self.number_line_y = int(h / 2)  # y of where number line is drawn
-        self.spacing = int((w - 100) / self.num_of_points)  # in pixels
-        self.start_x = int(self.spacing / 2) + 50  # x where the first point is and the number line starts
-        self.end_x = int(w - self.spacing / 2) - 50  # x where the last point is and the number line ends
+        self.spacing = int((w - 50) / self.num_of_points)  # in pixels
+        self.start_x = int(self.spacing / 2) + 25  # x where the first point is and the number line starts
+        self.end_x = int(w - self.spacing / 2) - 25  # x where the last point is and the number line ends
 
         self.make_circles()
 
