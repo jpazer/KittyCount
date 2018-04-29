@@ -42,11 +42,12 @@ class GameController:
 
         # position and draw cat
         self.cat_position = self.cat.set_random_position(-1)
-        self.cat.display()
 
         # position and draw mouse
         self.mouse_position = self.mouse.set_random_position(self.cat_position)
+
         self.mouse.display()
+        self.cat.display()
 
         # draw level on screen
         self.ui.display_all_help_text()
@@ -105,6 +106,7 @@ class GameController:
 
                             if self.cat_position + new_position < self.number_line.num_of_points:
                                 self.cat_position = self.cat.move(new_position)
+                                self.mouse.display()
                                 self.ui.user_input.clear()
 
                                 if self.cat_position == self.mouse_position:
