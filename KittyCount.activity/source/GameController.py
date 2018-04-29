@@ -6,7 +6,7 @@ from source.Character import Character
 
 
 class GameController:
-    level = 1
+    level = 49
 
     left_cat = "../assets/catLeft.png"
     right_cat = "../assets/catRight.png"
@@ -14,7 +14,8 @@ class GameController:
     ADD = pygame.USEREVENT + 1
     SUB = pygame.USEREVENT + 2
     GO = pygame.USEREVENT + 3
-
+    RESTART = pygame.USEREVENT + 4
+    QUIT = pygame.USEREVENT + 5
     def __init__(self, _screen):
         self.screen = _screen
 
@@ -41,9 +42,10 @@ class GameController:
 
         self.ui.update_level(self.level)
 
+        self.end = False
     def loop(self, events):
         # draw UI
-        self.ui.display(events)
+        self.ui.display(events, self.end)
 
         for event in events:
 
@@ -73,10 +75,10 @@ class GameController:
                                     self.level += 1
 
                                     if self.level > 50:
-                                        self.level = 1
-
-                                    self.ui.update_level(self.level)
-                                    self.number_line.change_level(self.level)
+                                        self.end = True
+                                    else :
+                                        self.ui.update_level(self.level)
+                                        self.number_line.change_level(self.level)
                             else:
                                 Utilities.show_error(self.screen, str(input_num) +
                                                      " moves the cat off of the number line. Try Again!")
