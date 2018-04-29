@@ -16,7 +16,7 @@ class StartScreen:
         self.w, self.h = Utilities.get_width_height()
         self.screen = screen
 
-        self.button_start = Button(screen, (x-150, y), (300, 100), "Start", 60, 4)
+        self.button_start = Button(screen, (x-150, y), (300, 100), "Start", 60, 6)
         self.cat = pygame.image.load("../assets/cat1.png")
         self.mouse = pygame.image.load("../assets/mouse3.png")
 
