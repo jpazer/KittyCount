@@ -2,6 +2,7 @@ import pygame
 from source.Utilities import Utilities
 from source.UI import UI
 from source.StartScreen import StartScreen
+from source.EndScreen import EndScreen
 from source.NumberLine import NumberLine
 from source.Character import Character
 
@@ -9,7 +10,7 @@ from source.Character import Character
 class GameController:
 
     level = 1
-    start = True
+    game_state = "start"
     
     # Error messages constants
     CAT_TOO_FAR_MESSAGE = " moves the cat off of the number line. Try Again!"
@@ -17,7 +18,7 @@ class GameController:
     NOT_ON_THE_NUMBER_LINE_MESSAGE = " is not on this number line. Try Again."
     
     # max level for the game.
-    MAX_LEVEL = 50
+    MAX_LEVEL = 2
     
     # constants for cat and mouse pictures.
     LEFT_CAT = "../assets/catLeft.png"
@@ -32,20 +33,23 @@ class GameController:
     START = pygame.USEREVENT + 6
 
     def game_display(self):
+        self.screen.fill((255, 255, 255))
 
-            self.screen.fill((255, 255, 255))
+        # draw number line
+        self.number_line.display()
+        self.number_line.display_numbers()
+        self.number_line.change_level(self.level)
 
-            self.number_line.display()
-            self.number_line.display_numbers()
-            self.number_line.change_level(self.level)
+        # position and draw cat
+        self.cat_position = self.cat.set_random_position(-1)
+        self.cat.display()
 
-            self.cat_position = self.cat.set_random_position(-1)
-            self.cat.display()
+        # position and draw mouse
+        self.mouse_position = self.mouse.set_random_position(self.cat_position)
+        self.mouse.display()
 
-            self.mouse_position = self.mouse.set_random_position(self.cat_position)
-            self.mouse.display()
-
-            self.ui.update_level(self.level)
+        # draw level on screen
+        self.ui.update_level(self.level)
 
     def __init__(self, _screen):
         self.screen = _screen
@@ -54,20 +58,23 @@ class GameController:
         self.w, self.h = Utilities.get_width_height()  # width and height of the screen
         self.screen = _screen
 
-        # draw start screen
+        # make start screen
         self.start_screen = StartScreen(self.screen, self.w / 2, self.h / 2)
 
-        # draw UI
+        # make end screen
+        self.end_screen = EndScreen(self.screen, "YOU WIN")
+
+        # make UI
         self.ui = UI(self.screen, self.w / 2, self.h / 2 + 150)
 
-        # display Number Line
+        # make Number Line
         self.number_line = NumberLine(self.screen, self.w, self.h)
 
-        # display cat
+        # make cat
         self.cat = Character(self.number_line.circle_pos, self.LEFT_CAT, 100, 100, self.screen)
         self.cat_position = -1
 
-        # display mouse
+        # make mouse
         self.mouse = Character(self.number_line.circle_pos, self.MOUSE, 50, 50, self.screen, self.cat.get_x_pos())
         self.mouse_position = -1
 
@@ -75,10 +82,12 @@ class GameController:
 
     def loop(self, events):
         # draw UI
-        if self.start:
+        if self.game_state == "start":
             self.start_screen.display(events)
-        else:
-            self.ui.display(events, self.end)
+        if self.game_state == "play":
+            self.ui.display(events)
+        if self.game_state == "end":
+            self.end_screen.display(events)
 
         for event in events:
 
@@ -103,7 +112,7 @@ class GameController:
                                     self.level += 1
 
                                     if self.level > self.MAX_LEVEL:
-                                        self.end = True
+                                        self.game_state = "end"
                                     else:
                                         self.ui.update_level(self.level)
                                         self.number_line.change_level(self.level)
@@ -127,18 +136,13 @@ class GameController:
                 self.ui.user_input.add(-1)
 
             if event.type == self.START:
-                self.start = False
+                self.game_state = "play"
                 self.game_display()
 
             if event.type == self.RESTART:
-                self.screen.fill((255, 255, 255))
-                self.end = False
                 self.level = 1
-                self.number_line.display()
-                self.number_line.change_level(self.level)
-                self.ui.update_level(self.level)
-                self.cat_position = self.cat.set_random_position(-1)
-                self.mouse_position = self.mouse.set_random_position(self.cat_position)
+                self.game_state = "play"
+                self.game_display()
 
             if event.type == self.QUIT:
                 pygame.event.post(pygame.event.Event(pygame.QUIT))

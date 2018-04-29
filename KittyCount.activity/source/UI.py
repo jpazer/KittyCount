@@ -2,7 +2,6 @@ import pygame
 from source.UserInput import UserInput
 from source.Button import Button
 from source.Utilities import Utilities
-from source.EndScreen import EndScreen
 
 
 class UI:
@@ -20,10 +19,8 @@ class UI:
         self.button_add = Button(screen, (x + 290, y), (80, (self.ui_height*0.56)), "+", 80, 1)
         self.button_go = Button(screen, (x, y + 95), (self.ui_width, (self.ui_height*0.44)), "Go", 60, 3)
         self.screen = screen
-        self.EndScreen = EndScreen(screen, "YOU WIN")
 
-    def display(self, events, end):
-        if not end:
+    def display(self, events):
             # draw UI
             self.user_input.display(events)
 
@@ -32,8 +29,6 @@ class UI:
             self.button_sub.display(events)
             self.button_go.display(events)
             self.display_all_help_text()
-        else:
-            self.EndScreen.display(events)
 
     def update_level(self, level):
         # display level
