@@ -4,6 +4,7 @@ from source.Button import Button
 from source.Utilities import Utilities
 from source.EndScreen import EndScreen
 
+
 class UI:
 
     def __init__(self, screen, x, y):
@@ -18,6 +19,7 @@ class UI:
         self.button_go = Button(screen, (x, y + 95), (ui_width, (ui_height*0.44)), "Go", 60, 3)
         self.screen = screen
         self.EndScreen = EndScreen(screen, "YOU WIN")
+
     def display(self, events, end):
         if not end:
             # draw UI

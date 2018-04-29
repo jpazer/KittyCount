@@ -17,6 +17,7 @@ class GameController:
     GO = pygame.USEREVENT + 3
     RESTART = pygame.USEREVENT + 4
     QUIT = pygame.USEREVENT + 5
+    
     def __init__(self, _screen):
         self.screen = _screen
 
@@ -46,6 +47,7 @@ class GameController:
         self.ui.update_level(self.level)
 
         self.end = False
+
     def loop(self, events):
         # draw UI
         self.ui.display(events, self.end)
@@ -67,20 +69,14 @@ class GameController:
                                 self.cat_position = self.cat.move(new_position)
                                 self.ui.user_input.clear()
 
-                                # debug print statements
-                                print("New Position: " + str(new_position))
-                                print("Cat Position: " + str(self.cat_position))
-                                print("Mouse Position: " + str(self.mouse_position))
-
                                 if self.cat_position == self.mouse_position:
                                     self.mouse_position = self.mouse.set_random_position(self.cat_position)
                                     self.cat.display()
                                     self.level += 1
 
                                     if self.level > 50:
-                                        self.level = 1
                                         self.end = True
-                                    else :
+                                    else:
                                         self.ui.update_level(self.level)
                                         self.number_line.change_level(self.level)
                             else:
@@ -101,14 +97,14 @@ class GameController:
                     self.ui.user_input.add(-1)
 
             if event.type == self.RESTART:
-                self.screen.fill((255,255,255))
+                self.screen.fill((255, 255, 255))
                 self.end = False
-                self.cat.set_random_position(-1)
-                self.mouse.set_random_position(self.cat_position)
-                self.ui.update_level(self.level)
+                self.level = 1
+                self.number_line.display()
                 self.number_line.change_level(self.level)
-                self.number_line.display();
-                
+                self.ui.update_level(self.level)
+                self.cat_position = self.cat.set_random_position(-1)
+                self.mouse_position = self.mouse.set_random_position(self.cat_position)
 
             if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
                 self.cat.set_display_image(self.left_cat)
@@ -122,8 +118,3 @@ class GameController:
                 self.cat.display()
                 self.mouse.erase()
                 self.mouse.display()
-
-
-
-
-
