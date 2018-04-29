@@ -6,10 +6,14 @@ from source.Character import Character
 
 
 class GameController:
+    level = 1
 
     left_cat = "../assets/catLeft.png"
     right_cat = "../assets/catRight.png"
 
+    ADD = pygame.USEREVENT + 1
+    SUB = pygame.USEREVENT + 2
+    GO = pygame.USEREVENT + 3
 
     def __init__(self, _screen):
         self.screen = _screen
@@ -19,7 +23,7 @@ class GameController:
         self.screen = _screen
 
         # draw UI
-        self.ui = UI(self.screen, self.w / 2 - 200, self.h / 2 + 150)
+        self.ui = UI(self.screen, self.w / 2, self.h / 2 + 150)
 
         # display Number Line
         self.number_line = NumberLine(self.screen, self.w, self.h)
@@ -35,37 +39,73 @@ class GameController:
         self.mouse_position = self.mouse.set_random_position(self.cat_position)
         self.mouse.display()
 
+        self.ui.update_level(self.level)
+
     def loop(self, events):
         # draw UI
         self.ui.display(events)
 
         for event in events:
-            if event.type == pygame.USEREVENT:
-                if event.button_type == "go":
-                    self.cat_position = self.cat.move(self.ui.user_input.get_input())
-                    self.ui.user_input.clear()
-                    if self.cat_position == self.mouse_position:
-                        self.mouse_position = self.mouse.set_random_position(self.cat_position)
-                        self.cat.display()
-                        self.number_line.clear()
-                        self.number_line.next_level()
-                        print("you caught the mouse!")
-                if event.button_type == "add":
+
+            if event.type == self.GO or (event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN):
+                Utilities.show_error(self.screen, "")  # clear previous error
+                input_num = self.ui.user_input.get_input()
+
+                if input_num is not None:
+
+                    if input_num % self.level == 0:
+                        new_position = int(input_num/self.level)
+
+                        if self.cat_position + new_position >= 0:
+
+                            if self.cat_position + new_position < self.number_line.num_of_points:
+                                self.cat_position = self.cat.move(new_position)
+                                self.ui.user_input.clear()
+
+                                # debug print statements
+                                print("New Position: " + str(new_position))
+                                print("Cat Position: " + str(self.cat_position))
+                                print("Mouse Position: " + str(self.mouse_position))
+
+                                if self.cat_position == self.mouse_position:
+                                    self.mouse_position = self.mouse.set_random_position(self.cat_position)
+                                    self.cat.display()
+                                    self.level += 1
+
+                                    if self.level > 50:
+                                        self.level = 1
+
+                                    self.ui.update_level(self.level)
+                                    self.number_line.change_level(self.level)
+                            else:
+                                Utilities.show_error(self.screen, str(input_num) +
+                                                     " moves the cat off of the number line. Try Again!")
+                        else:
+                            Utilities.show_error(self.screen, str(input_num) +
+                                                 " moves the cat off of the number line. Try Again!")
+                    else:
+                        Utilities.show_error(self.screen, str(self.ui.user_input.get_input()) +
+                                             " moves the cat to a number that is not on the number line.")
+                else:
+                    Utilities.show_error(self.screen, "Please type a number and try again!")
+
+            if event.type == self.ADD:
                     self.ui.user_input.add(1)
-                if event.button_type == "sub":
+            if event.type == self.SUB:
                     self.ui.user_input.add(-1)
 
-                if self.ui.user_input.get_input() < 0:
-                    self.cat.set_display_image(self.left_cat)
-                    self.cat.erase()
-                    self.cat.display()
-                if self.ui.user_input.get_input() > 0:
-                    self.cat.set_display_image(self.right_cat)
-                    self.cat.erase()
-                    self.cat.display()
-
-
-
+            if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
+                self.cat.set_display_image(self.left_cat)
+                self.cat.erase()
+                self.cat.display()
+                self.mouse.erase()
+                self.mouse.display()
+            if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() > 0:
+                self.cat.set_display_image(self.right_cat)
+                self.cat.erase()
+                self.cat.display()
+                self.mouse.erase()
+                self.mouse.display()
 
 
 
