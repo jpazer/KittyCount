@@ -30,7 +30,7 @@ class GameController:
         # display Number Line
         self.number_line = NumberLine(self.screen, self.w, self.h)
         self.number_line.display()
-
+        self.number_line.display_numbers()
         self.number_line.change_level(self.level)
 
         # display cat
@@ -79,8 +79,6 @@ class GameController:
 
                                     if self.level > 50:
                                         self.level = 1
-                                        self.ui.update_level(self.level)
-                                        self.number_line.change_level(self.level)
                                         self.end = True
                                     else :
                                         self.ui.update_level(self.level)
@@ -107,6 +105,8 @@ class GameController:
                 self.end = False
                 self.cat.set_random_position(-1)
                 self.mouse.set_random_position(self.cat_position)
+                self.ui.update_level(self.level)
+                self.number_line.change_level(self.level)
                 self.number_line.display();
                 
 

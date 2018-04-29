@@ -45,7 +45,7 @@ class NumberLine:
         pygame.draw.line(self.screen, (0, 0, 0), (self.start_x, self.number_line_y), (self.end_x, self.number_line_y))
 
         self.display_circles()
-        self.display_numbers()
+        
 
     def change_level(self, level):
         self.level = level
