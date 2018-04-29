@@ -18,11 +18,10 @@ class UI:
         self.user_input = UserInput(screen, (x + 85, y), 200, self.ui_height*0.56)
         self.button_add = Button(screen, (x + 290, y), (80, (self.ui_height*0.56)), "+", 80, 1)
         self.button_go = Button(screen, (x, y + 95), (self.ui_width, (self.ui_height*0.44)), "Go", 60, 3)
-        self.button_quit = Button(screen, (w-110,10), (100,50),"Quit", 30, 5)
-        self.button_restart = Button(screen, (w-220, 10), (100, 50), "Restart", 30, 4)
+        self.button_quit = Button(screen, (w-110, 10), (100, 50), "Quit", 25, 5)
+        self.button_restart = Button(screen, (w-220, 10), (100, 50), "Restart", 25, 4)
 
         self.screen = screen
-
 
     def display(self, events):
             # draw UI
