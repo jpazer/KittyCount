@@ -1,5 +1,4 @@
 import pygame
-import sys
 from source.Utilities import Utilities
 from source.UI import UI
 from source.NumberLine import NumberLine
@@ -10,9 +9,9 @@ class GameController:
     level = 1
     
     # Error messages constants
-    CAT_TOO_FAR_MESSAGE =  " moves the cat off of the number line. Try Again!"
-    EMPTY_BOX_MESSAGE = "Please type a number and try 
-    NOT_ON_THE_NUMBER_LINE_MESSAGE = " is not on this number line.  Try Again."
+    CAT_TOO_FAR_MESSAGE = " moves the cat off of the number line. Try Again!"
+    EMPTY_BOX_MESSAGE = "Please type a number and try again."
+    NOT_ON_THE_NUMBER_LINE_MESSAGE = " is not on this number line. Try Again."
     
     # max level for the game.
     MAX_LEVEL = 50
