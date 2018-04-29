@@ -2,10 +2,6 @@ import pygame
 from source.Button import Button
 from source.Utilities import Utilities
 
-# implementation
-# from source.StartScreen import StartScreen
-# self.start_screen = StartScreen(self.screen, self.w / 2, self.h / 2)
-
 
 class StartScreen:
 
