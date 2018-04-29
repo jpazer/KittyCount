@@ -106,6 +106,9 @@ class GameController:
                 self.cat_position = self.cat.set_random_position(-1)
                 self.mouse_position = self.mouse.set_random_position(self.cat_position)
 
+            if event.type == self.QUIT:
+                pygame.event.post(pygame.event.Event(pygame.QUIT))
+
             if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
                 self.cat.set_display_image(self.left_cat)
                 self.cat.erase()
