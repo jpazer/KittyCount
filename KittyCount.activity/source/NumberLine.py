@@ -16,14 +16,20 @@ class NumberLine:
         self.start_x = int(self.spacing / 2)  # x where the first point is and the number line starts
         self.end_x = int(w - self.spacing / 2)  # x where the last point is and the number line ends
 
-    def display_circles(self):
+        self.make_circles()
+
+    def make_circles(self):
         # draw points on line
         for num in range(0, 20):
             position = (self.start_x + num * self.spacing, self.number_line_y)
             self.circle_pos.append(position)
             circle = NumberCircle(self.screen, position)
-            circle.display()
             self.circles.append(circle)
+
+    def display_circles(self):
+        # draw points on line
+        for num in range(0, 20):
+            self.circles[num].display()
 
     def display_numbers(self):
         for num in range(0, len(self.circle_pos)):
@@ -43,7 +49,6 @@ class NumberLine:
     def display(self):
         # draw line
         pygame.draw.line(self.screen, (0, 0, 0), (self.start_x, self.number_line_y), (self.end_x, self.number_line_y))
-
         self.display_circles()
         self.display_numbers()
 
