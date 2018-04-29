@@ -37,18 +37,24 @@ class UI:
     def update_level(self, level):
         # display level
         pygame.draw.rect(self.screen, (255, 255, 255), (10, 10, 200, 50), 0)
-        self.screen.blit(Utilities.make_text_surface("Level: " + str(level), 30), (10, 10))
+        self.screen.blit(Utilities.make_text_surface("Level: " + str(level), 30), (20, 20))
 
     def display_all_help_text(self):
         w, h = Utilities.get_width_height()
+        help_text_width = ((w - self.ui_width) / 2)
+        help_text_padding = help_text_width * 0.1
+        help_text_width = help_text_width - (help_text_padding * 2)
+
         self.display_text("Try and catch the mouse!", w/2, 120, 30)
         Utilities.draw_text(self.screen,
                             "Type the number in the box or use the + and - buttons to change it.",
-                            (self.x+420, self.y, 320, self.ui_height), 25)
+                            (self.x + self.ui_width/2 + help_text_width/2 + help_text_padding, self.y,
+                             help_text_width, self.ui_height), 25)
         Utilities.draw_text(self.screen,
                             "Move the cat by telling it how many numbers to jump. " +
                             "Use negative numbers to move backwards.",
-                            (self.x-420, self.y, 320, self.ui_height), 25)
+                            (self.x - self.ui_width/2 - help_text_width/2 - help_text_padding, self.y,
+                             help_text_width, self.ui_height), 25)
 
     def display_text(self, text, x, y, size):
         text_surface = Utilities.make_text_surface(text, size)
