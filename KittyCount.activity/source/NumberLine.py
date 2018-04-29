@@ -7,7 +7,7 @@ class NumberLine:
     num_of_points = 20  # num of points on number line
     circle_pos = []
     circles = []
-    level = 49
+    level = 1
 
     def __init__(self, screen, w, h):
         self.screen = screen

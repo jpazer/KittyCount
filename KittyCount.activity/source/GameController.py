@@ -1,4 +1,5 @@
 import pygame
+import sys
 from source.Utilities import Utilities
 from source.UI import UI
 from source.NumberLine import NumberLine
@@ -6,7 +7,7 @@ from source.Character import Character
 
 
 class GameController:
-    level = 49
+    level = 50
 
     left_cat = "../assets/catLeft.png"
     right_cat = "../assets/catRight.png"
@@ -29,6 +30,8 @@ class GameController:
         # display Number Line
         self.number_line = NumberLine(self.screen, self.w, self.h)
         self.number_line.display()
+
+        self.number_line.change_level(self.level)
 
         # display cat
         self.cat = Character(self.number_line.circle_pos, self.left_cat, 100, 100, self.screen)
@@ -75,6 +78,9 @@ class GameController:
                                     self.level += 1
 
                                     if self.level > 50:
+                                        self.level = 1
+                                        self.ui.update_level(self.level)
+                                        self.number_line.change_level(self.level)
                                         self.end = True
                                     else :
                                         self.ui.update_level(self.level)
@@ -95,6 +101,14 @@ class GameController:
                     self.ui.user_input.add(1)
             if event.type == self.SUB:
                     self.ui.user_input.add(-1)
+
+            if event.type == self.RESTART:
+                self.screen.fill((255,255,255))
+                self.end = False
+                self.cat.set_random_position(-1)
+                self.mouse.set_random_position(self.cat_position)
+                self.number_line.display();
+                
 
             if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
                 self.cat.set_display_image(self.left_cat)
