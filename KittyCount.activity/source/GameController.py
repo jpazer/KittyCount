@@ -19,7 +19,7 @@ class GameController:
     
     # max level for the game.
     MAX_LEVEL = 50
-    
+
     # constants for cat and mouse pictures.
     LEFT_CAT = "../assets/catLeft.png"
     RIGHT_CAT = "../assets/catRight.png"
@@ -49,6 +49,7 @@ class GameController:
         self.mouse.display()
 
         # draw level on screen
+        self.ui.display_all_help_text()
         self.ui.update_level(self.level)
 
     def __init__(self, _screen):
@@ -62,7 +63,7 @@ class GameController:
         self.start_screen = StartScreen(self.screen, self.w / 2, self.h / 2)
 
         # make end screen
-        self.end_screen = EndScreen(self.screen, "YOU WIN")
+        self.end_screen = EndScreen(self.screen, self.w / 2, self.h / 2)
 
         # make UI
         self.ui = UI(self.screen, self.w / 2, self.h / 2 + 150)
