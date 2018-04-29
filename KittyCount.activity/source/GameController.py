@@ -18,7 +18,7 @@ class GameController:
     NOT_ON_THE_NUMBER_LINE_MESSAGE = " is not on this number line. Try Again."
     
     # max level for the game.
-    MAX_LEVEL = 2
+    MAX_LEVEL = 50
     
     # constants for cat and mouse pictures.
     LEFT_CAT = "../assets/catLeft.png"
