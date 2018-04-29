@@ -7,7 +7,7 @@ class EndScreen:
         x,y = Utilities.get_width_height()
         self.screen = screen
         self.restart = Button(screen, ((x/2)-350, y/2), (300,100), "Restart Game", 50, 4)
-        self.quit = Button(screen, ((x/2)+50, y/2), (300,100), "Quit Game", 50, 4)
+        self.quit = Button(screen, ((x/2)+50, y/2), (300,100), "Quit Game", 50, 5)
         self.message = Utilities.make_text_surface(message, 60)
 
         self.message_width = self.message.get_rect().width
