@@ -7,15 +7,10 @@ class NumberCircle:
     radius = 10
     width = 0
 
-    def __init__(self, screen, position, number, level):
+    def __init__(self, screen, position):
         self.screen = screen
         self.position = position
-        self.number = number
-        self.level = level
 
     def display(self):
         # draw circle
         pygame.draw.circle(self.screen, self.color, self.position, self.radius, self.width)
-        # draw number beneath circle
-        self.screen.blit(Utilities.make_text_surface(self.number * self.level, 12),
-                         (self.position[0] - 5, self.position[1] + 15))
