@@ -7,10 +7,20 @@ from source.Character import Character
 
 
 class GameController:
-    level = 50
-
-    left_cat = "../assets/catLeft.png"
-    right_cat = "../assets/catRight.png"
+    level = 1
+    
+    # Error messages constants
+    CAT_TOO_FAR_MESSAGE =  " moves the cat off of the number line. Try Again!"
+    EMPTY_BOX_MESSAGE = "Please type a number and try 
+    NOT_ON_THE_NUMBER_LINE_MESSAGE = " is not on this number line.  Try Again."
+    
+    # max level for the game.
+    MAX_LEVEL = 50
+    
+    # constants for cat and mouse pictures.
+    LEFT_CAT = "../assets/catLeft.png"
+    RIGHT_CAT = "../assets/catRight.png"
+    MOUSE = "../assets/mouse.png"
 
     ADD = pygame.USEREVENT + 1
     SUB = pygame.USEREVENT + 2
@@ -35,12 +45,12 @@ class GameController:
         self.number_line.change_level(self.level)
 
         # display cat
-        self.cat = Character(self.number_line.circle_pos, self.left_cat, 100, 100, self.screen)
+        self.cat = Character(self.number_line.circle_pos, self.LEFT_CAT, 100, 100, self.screen)
         self.cat_position = self.cat.set_random_position(-1)
         self.cat.display()
 
         # display mouse
-        self.mouse = Character(self.number_line.circle_pos, "../assets/mouse.png", 50, 50, self.screen, self.cat.get_x_pos())
+        self.mouse = Character(self.number_line.circle_pos, self.MOUSE, 50, 50, self.screen, self.cat.get_x_pos())
         self.mouse_position = self.mouse.set_random_position(self.cat_position)
         self.mouse.display()
 
@@ -74,27 +84,29 @@ class GameController:
                                     self.cat.display()
                                     self.level += 1
 
-                                    if self.level > 50:
+                                    if self.level > self.MAX_LEVEL:
                                         self.end = True
                                     else:
                                         self.ui.update_level(self.level)
                                         self.number_line.change_level(self.level)
                             else:
-                                Utilities.show_error(self.screen, str(input_num) +
-                                                     " moves the cat off of the number line. Try Again!")
+                                Utilities.show_error(self.screen, str(input_num) + self.CAT_TOO_FAR_MESSAGE)
                         else:
-                            Utilities.show_error(self.screen, str(input_num) +
-                                                 " moves the cat off of the number line. Try Again!")
+                            Utilities.show_error(self.screen, str(input_num) + self.CAT_TOO_FAR_MESSAGE)
                     else:
-                        Utilities.show_error(self.screen, str(self.ui.user_input.get_input()) +
-                                             " moves the cat to a number that is not on the number line.")
+                        equation = ""
+                        if self.ui.user_input.get_input() > 0:
+                            equation = str(self.cat_position * self.level) + " + " + str(self.ui.user_input.get_input())
+                        else:
+                            equation = str(self.cat_position * self.level) + " - " + str(self.ui.user_input.get_input())[1:]
+                        Utilities.show_error(self.screen, equation + self.NOT_ON_THE_NUMBER_LINE_MESSAGE)
                 else:
-                    Utilities.show_error(self.screen, "Please type a number and try again!")
+                    Utilities.show_error(self.screen, self.EMPTY_BOX_MESSAGE)
 
             if event.type == self.ADD:
-                    self.ui.user_input.add(1)
+                self.ui.user_input.add(1)
             if event.type == self.SUB:
-                    self.ui.user_input.add(-1)
+                self.ui.user_input.add(-1)
 
             if event.type == self.RESTART:
                 self.screen.fill((255, 255, 255))
@@ -107,13 +119,13 @@ class GameController:
                 self.mouse_position = self.mouse.set_random_position(self.cat_position)
 
             if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() < 0:
-                self.cat.set_display_image(self.left_cat)
+                self.cat.set_display_image(self.LEFT_CAT)
                 self.cat.erase()
                 self.cat.display()
                 self.mouse.erase()
                 self.mouse.display()
             if self.ui.user_input.get_input() is not None and self.ui.user_input.get_input() > 0:
-                self.cat.set_display_image(self.right_cat)
+                self.cat.set_display_image(self.RIGHT_CAT)
                 self.cat.erase()
                 self.cat.display()
                 self.mouse.erase()
