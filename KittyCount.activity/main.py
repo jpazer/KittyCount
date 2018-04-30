@@ -1,26 +1,33 @@
 import pygame
-from pygame.locals import *
-
+from source.GameController import GameController
 
 
 def main():
-	pygame.init()
+    pygame.init()
+    pygame.font.init()
+    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    screen.fill((255, 255, 255))
+    done = False
 
-	screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
-	screen.fill((255,255,255))
-	pygame.display.flip()
-	done = False
+    game_controller = GameController(screen)
 
-	while not done:
-		x,y = screen.get_size()
-        	for event in pygame.event.get():
-                	if event.type == pygame.QUIT:
-                    		done = True
-                	if event.type == pygame.KEYDOWN:
-                    		if event.key == pygame.K_RETURN:
-                        		done = True;
-        	pygame.draw.line(screen, (0, 0, 0), (x/8, 3*y/4), (7*x/8, 3*y/4))
-        	pygame.display.flip()
+    clock = pygame.time.Clock()
 
-if  __name__ == '__main__':
-	main()
+    while not done:
+        events = pygame.event.get()
+
+        game_controller.loop(events)
+
+        for event in events:
+            if event.type == pygame.QUIT:
+                done = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    done = True
+
+        pygame.display.update()
+        clock.tick(10)
+
+
+if __name__ == '__main__':
+    main()

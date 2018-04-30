@@ -1,3 +1,7 @@
 *.py[cod]
 dist/
 po/
+
+.idea/workspace.xml
+
+\.idea/
