@@ -26,7 +26,7 @@ def main():
                     done = True
 
         pygame.display.update()
-        clock.tick(10)
+        clock.tick(60)
 
 
 if __name__ == '__main__':
