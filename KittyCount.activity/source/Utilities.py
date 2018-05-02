@@ -22,10 +22,12 @@ class Utilities:
 
     @staticmethod
     def show_error(screen, error_text):
-        # shows helpful errors
-
+        # get ui y
         w, h = Utilities.get_width_height()
-        x, y = (w/2, h/2 + 120)
+
+        # shows helpful errors
+        x = w/2
+        y = h/2+100
         pygame.draw.rect(screen, (255, 255, 255), (x-250, y, 500, 20), 0)
         text_surface = Utilities.make_text_surface(error_text, 16)
         text_size = text_surface.get_size()
